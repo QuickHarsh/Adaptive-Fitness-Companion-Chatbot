@@ -1,0 +1,81 @@
+[
+    {
+        "keywords": [
+            "warm-up",
+            "warmup",
+            "running",
+            "before run"
+        ],
+        "answer": "A good warm-up for running includes dynamic stretches like leg swings, lunges, and high knees. Aim for 5-10 minutes to increase blood flow."
+    },
+    {
+        "keywords": [
+            "weight loss",
+            "losing weight",
+            "fat loss"
+        ],
+        "answer": "For weight loss, a combination of strength training and cardio is effective, along with a caloric deficit. Focus on whole foods and consistency."
+    },
+    {
+        "keywords": [
+            "muscle gain",
+            "build muscle",
+            "hypertrophy"
+        ],
+        "answer": "To build muscle, focus on progressive overload (increasing weight/reps over time) and consuming enough protein (1.6-2.2g per kg of bodyweight)."
+    },
+    {
+        "keywords": [
+            "soreness",
+            "sore",
+            "recovery"
+        ],
+        "answer": "Muscle soreness (DOMS) is normal. Active recovery like walking, hydration, and sleep helps. If pain is sharp, rest and consult a professional."
+    },
+    {
+        "keywords": [
+            "hydration",
+            "water",
+            "drink"
+        ],
+        "answer": "Aim for 3-4 liters of water daily, more if you are active. Hydration is key for performance and recovery."
+    },
+    {
+        "keywords": [
+            "consistency",
+            "consistent",
+            "habit"
+        ],
+        "answer": "Consistency is built by setting small, achievable goals. Schedule your workouts like appointments and track your progress."
+    },
+    {
+        "keywords": [
+            "beginner",
+            "starting",
+            "start"
+        ],
+        "answer": "Start with 2-3 full-body sessions per week. Focus on form over weight. Consistency beats intensity in the beginning."
+    },
+    {
+        "keywords": [
+            "diet",
+            "food",
+            "nutrition"
+        ],
+        "answer": "Prioritize whole foods: lean proteins, vegetables, healthy fats, and complex carbs. Avoid processed sugars and excessive alcohol."
+    },
+    {
+        "keywords": [
+            "sleep",
+            "rest"
+        ],
+        "answer": "Sleep is when your muscles repair. Aim for 7-9 hours of quality sleep per night for optimal recovery and performance."
+    },
+    {
+        "keywords": [
+            "stress",
+            "mental"
+        ],
+        "answer": "Exercise is a great stress reliever. Yoga, meditation, and walking can also help manage stress levels."
+    }
+]
