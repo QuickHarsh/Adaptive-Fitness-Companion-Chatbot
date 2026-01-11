@@ -20,9 +20,13 @@ The backend runs on Node.js + Express and handles AI logic and database persiste
 3. Create a `.env` file in the root configuration (or update environment variables):
    ```env
    DATABASE_URL=postgresql://user:password@localhost:5432/fitness_db
-   OPENAI_API_KEY=sk-...
+   OPENAI_API_KEY=gsk_... (Groq API Key)
+   OPENAI_BASE_URL=https://api.groq.com/openai/v1
+   OPENAI_MODEL=openai/gpt-oss-120b
    PORT=3000
    ```
+   > **Note**: Currently using **Groq API** for testing purposes as an alternative to OpenAI (due to API key availability). The system is compatible with both.
+
 4. Start the server:
    ```bash
    node backend/index.js
