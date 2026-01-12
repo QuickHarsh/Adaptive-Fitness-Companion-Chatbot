@@ -48,6 +48,31 @@ The frontend is built with Expo.
 > 
 > **Offline Mode**: If you *only* run `npx expo start`, the app will function in "Offline Mode" with limited responses. This satisfies the "run only with expo start" constraint for basic UI/Logic verification.
 
+## 🚀 Deployment
+
+### 1. Backend (Render.com)
+The backend must be deployed publicly for the APK to access it.
+
+1. Push this code to GitHub.
+2. Create a new **Web Service** on [Render](https://dashboard.render.com).
+3. Connect your repository.
+4. Render should auto-detect the configuration from `render.yaml`.
+5. Add the following **Environment Variables** in Render Dashboard:
+   - `DATABASE_URL`: (Your Supabase connection string)
+   - `OPENAI_API_KEY`: (Your OpenAI Key)
+   - `OPENAI_MODEL`: `gpt-4o`
+
+### 2. Frontend (Android APK via Expo EAS)
+1. Update your local `.env` file with your deployed backend URL:
+   ```env
+   EXPO_PUBLIC_API_BASE_URL=https://your-app-name.onrender.com
+   ```
+2. Build the APK:
+   ```bash
+   npx eas-cli build -p android --profile preview
+   ```
+3. Download and install the APK from the Expo Dashboard link.
+
 ---
 
 ## 🧠 AI & Prompt Strategy
