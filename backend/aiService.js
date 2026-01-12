@@ -112,7 +112,7 @@ const generateResponse = async (userMessage, context) => {
         - Keep it clean and easy to read as plain text.
         `;
 
-        const model = process.env.OPENAI_MODEL || "gpt-3.5-turbo";
+        const model = process.env.OPENAI_MODEL || "gpt-4o";
 
         const completion = await openai.chat.completions.create({
             model: model,

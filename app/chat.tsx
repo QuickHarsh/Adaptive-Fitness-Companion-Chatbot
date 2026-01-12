@@ -34,9 +34,11 @@ export default function ChatScreen() {
             // Determine API URL based on platform
             // Android Emulator uses 10.0.2.2 to access host localhost
             // iOS Simulator and Web use localhost
-            const API_URL = Platform.OS === 'android'
-                ? 'http://10.0.2.2:3000/api/chat'
-                : 'http://localhost:3000/api/chat';
+            const API_URL = process.env.EXPO_PUBLIC_API_BASE_URL
+                ? `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/chat`
+                : (Platform.OS === 'android'
+                    ? 'http://10.0.2.2:3000/api/chat'
+                    : 'http://localhost:3000/api/chat');
 
             console.log('Connecting to:', API_URL);
 

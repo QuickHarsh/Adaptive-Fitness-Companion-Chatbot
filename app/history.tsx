@@ -3,9 +3,11 @@ import { ActivityIndicator, FlatList, Platform, StyleSheet, Text, View } from 'r
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Determine API URL based on platform
-const API_URL = Platform.OS === 'android'
-    ? 'http://10.0.2.2:3000/api/history'
-    : 'http://localhost:3000/api/history';
+const API_URL = process.env.EXPO_PUBLIC_API_BASE_URL
+    ? `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/history`
+    : (Platform.OS === 'android'
+        ? 'http://10.0.2.2:3000/api/history'
+        : 'http://localhost:3000/api/history');
 
 export default function HistoryScreen() {
     const [history, setHistory] = useState<any[]>([]);
