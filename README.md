@@ -20,12 +20,12 @@ The backend runs on Node.js + Express and handles AI logic and database persiste
 3. Create a `.env` file in the root configuration (or update environment variables):
    ```env
    DATABASE_URL=postgresql://user:password@localhost:5432/fitness_db
-   OPENAI_API_KEY=gsk_... (Groq API Key)
-   OPENAI_BASE_URL=https://api.groq.com/openai/v1
-   OPENAI_MODEL=openai/gpt-oss-120b
+   OPENAI_API_KEY=sk-... (Your OpenAI API Key)
+   # OPENAI_BASE_URL= (Optional: Leave empty for default OpenAI)
+   OPENAI_MODEL=gpt-4o
    PORT=3000
    ```
-   > **Note**: Currently using **Groq API** for testing purposes as an alternative to OpenAI (due to API key availability). The system is compatible with both.
+   > **Note**: The system is configured to use OpenAI's `gpt-4o` by default.
 
 4. Start the server:
    ```bash
@@ -87,8 +87,7 @@ The system prompt includes strict instructions to **REFUSE** answering questions
 3. Suggest consulting a professional.
 
 ## 🛠️ AI Tools & Prompts Used
-- **OpenAI GPT-4o / GPT-3.5**: Used for generating chat responses.
-- **Groq (Mixtral 8x7B)**: Supported as an alternative high-speed model.
+- **OpenAI GPT-4o**: Used for generating chat responses.
 - **GitHub Copilot / Agent**: Used for debugging, code scaffolding, and generating the `faq.json` dataset.
 - **Prompts**:
   - *System Prompt*: "You are an Adaptive Fitness Companion..." (See `backend/aiService.js` for full prompt).
