@@ -92,7 +92,6 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setPersonality('A');
         setUsageDays(0);
         setCoins(0);
-        // Reset start date to now
         await AsyncStorage.setItem('first_open_date', Date.now().toString());
     }
 

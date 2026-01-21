@@ -2,9 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, FlatList, Platform, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Determine API URL based on platform
-const API_URL = process.env.EXPO_PUBLIC_API_BASE_URL
-    ? `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/history`
+let baseUrl = process.env.EXPO_PUBLIC_API_BASE_URL;
+if (baseUrl && baseUrl.endsWith('/')) {
+    baseUrl = baseUrl.slice(0, -1);
+}
+
+if (Platform.OS === 'android' && baseUrl && baseUrl.includes('localhost')) {
+    baseUrl = baseUrl.replace('localhost', '10.0.2.2');
+}
+
+const API_URL = baseUrl
+    ? `${baseUrl}/api/history`
     : (Platform.OS === 'android'
         ? 'http://10.0.2.2:3000/api/history'
         : 'http://localhost:3000/api/history');
@@ -28,7 +36,6 @@ export default function HistoryScreen() {
             }
         } catch (error) {
             console.warn('Backend unavailable. Showing offline state.');
-            // Optional: Set mock history for demo purposes fallback
             setHistory([
                 { sender: 'ai', message: 'History unavailable in offline mode.', timestamp: new Date().toISOString() }
             ]);
@@ -39,7 +46,7 @@ export default function HistoryScreen() {
 
     const renderItem = ({ item }: { item: any }) => (
         <View style={styles.historyItem}>
-            <Text style={styles.role}>{item.sender === 'user' ? '👤 You' : '🤖 AI'}</Text>
+            <Text style={styles.role}>{item.sender === 'user' ? 'You' : 'AI'}</Text>
             <Text style={styles.message}>{item.message}</Text>
             <Text style={styles.date}>{new Date(item.timestamp || Date.now()).toLocaleDateString()}</Text>
         </View>

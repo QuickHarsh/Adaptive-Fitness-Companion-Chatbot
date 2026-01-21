@@ -16,7 +16,6 @@ export default function ChatScreen() {
     const [loading, setLoading] = useState(false);
     const flatListRef = useRef<FlatList>(null);
 
-    // Initial greeting based on context
     useEffect(() => {
         const initialMessage = "Hi! I'm your fitness companion. How can I help you today?";
         setMessages([{ id: 'init', text: initialMessage, sender: 'ai' }]);
@@ -31,20 +30,23 @@ export default function ChatScreen() {
         setLoading(true);
 
         try {
-            // Determine API URL based on platform
-            // Android Emulator uses 10.0.2.2 to access host localhost
-            // iOS Simulator and Web use localhost
-            const API_URL = process.env.EXPO_PUBLIC_API_BASE_URL
-                ? `${process.env.EXPO_PUBLIC_API_BASE_URL}/api/chat`
+            let baseUrl = process.env.EXPO_PUBLIC_API_BASE_URL;
+            if (baseUrl && baseUrl.endsWith('/')) {
+                baseUrl = baseUrl.slice(0, -1);
+            }
+            if (Platform.OS === 'android' && baseUrl && baseUrl.includes('localhost')) {
+                baseUrl = baseUrl.replace('localhost', '10.0.2.2');
+            }
+
+            const API_URL = baseUrl
+                ? `${baseUrl}/api/chat`
                 : (Platform.OS === 'android'
                     ? 'http://10.0.2.2:3000/api/chat'
                     : 'http://localhost:3000/api/chat');
 
             console.log('Connecting to:', API_URL);
 
-            // ... network request ...
-
-            // Award Coin
+            console.log('Connecting to:', API_URL);
             addCoin();
 
             const response = await fetch(API_URL, {
@@ -52,7 +54,7 @@ export default function ChatScreen() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: userMsg.text,
-                    userId: 'user_123', // Dummy ID
+                    userId: 'user_123',
                     userContext: {
                         personality,
                         usageDays,
@@ -104,9 +106,6 @@ export default function ChatScreen() {
     return (
         <SafeAreaView style={styles.container} edges={['bottom', 'left', 'right']}>
             <View style={styles.appBar}>
-                {/* Back button logic is handled by navigation header normally, 
-                   but we style the bar background via container or navigation options. 
-                   Since we are in SafeAreaView, let's just style the container background. */}
             </View>
 
             <View style={styles.chatBackground}>
@@ -170,10 +169,10 @@ export default function ChatScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ECE5DD', // WhatsApp Background
+        backgroundColor: '#ECE5DD',
     },
     appBar: {
-        height: 0, // Handled by Navigation Header, but ensure bg matches
+        height: 0,
     },
     chatBackground: {
         flex: 1,

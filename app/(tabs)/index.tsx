@@ -9,7 +9,6 @@ export default function HomeScreen() {
   const { personality, setPersonality, usageDays, lifestyle, coins } = useUser();
   const scaleAnim = useRef(new Animated.Value(1)).current;
 
-  // Animate when coins change
   useEffect(() => {
     Animated.sequence([
       Animated.timing(scaleAnim, {

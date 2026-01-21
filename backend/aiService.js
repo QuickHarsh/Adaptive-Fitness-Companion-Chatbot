@@ -7,14 +7,12 @@ const configuration = {
     apiKey: process.env.OPENAI_API_KEY,
 };
 
-// Support for Custom Base URL (e.g. Groq)
 if (process.env.OPENAI_BASE_URL) {
     configuration.baseURL = process.env.OPENAI_BASE_URL;
 }
 
 const openai = new OpenAI(configuration);
 
-// Load FAQ Data for RAG-lite
 let faqData = [];
 try {
     const faqPath = path.join(__dirname, 'data', 'faq.json');
@@ -36,7 +34,6 @@ const findRelevantFaq = (message) => {
     return null;
 };
 
-// Personality Traits configuration
 const PERSONALITIES = {
     'A': 'Encouragement Seeker: You are empathetic, reassuring, and provide frequent nudges. Focus on motivation.',
     'B': 'Creative Explorer: You are witty, creative, and dislike spoon-feeding. Offer variety and let the user explore options.',
@@ -81,7 +78,6 @@ const generateResponse = async (userMessage, context) => {
         - Sleep: ${lifestyle.sleepHours || 0} hours
         `;
 
-        // 3. RAG-lite: Check for relevant FAQ
         const faqContext = findRelevantFaq(userMessage);
         const faqString = faqContext
             ? `\n**Relevant Fitness Knowledge Base**:\n"${faqContext}"\n(Use this info if relevant, but maintain your personality.)`

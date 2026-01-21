@@ -12,7 +12,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Basic Health Check
 app.get('/', (req, res) => {
     res.send('Adaptive Fitness Chatbot Backend is running');
 });
@@ -36,7 +35,6 @@ app.post('/api/chat', async (req, res) => {
             return res.status(400).json({ error: 'Message and UserId are required' });
         }
 
-        // 1. Save User Message
         await db.query(
             'INSERT INTO chats (user_id, message, sender, personality, usage_days) VALUES ($1, $2, $3, $4, $5)',
             [userId, message, 'user', userContext?.personality, userContext?.usageDays]
@@ -45,7 +43,6 @@ app.post('/api/chat', async (req, res) => {
         // 2. Get AI Response
         const aiResponse = await aiService.generateResponse(message, userContext);
 
-        // 3. Save AI Message
         // If the response is structured (JSON), we might want to store it as string
         const aiMessageContent = typeof aiResponse === 'string' ? aiResponse : JSON.stringify(aiResponse);
 
@@ -62,7 +59,6 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-// Get Chat History (Bonus)
 app.get('/api/history/:userId', async (req, res) => {
     try {
         const { userId } = req.params;
